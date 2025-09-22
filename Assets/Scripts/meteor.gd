@@ -1,24 +1,33 @@
 extends Area2D
 
-var rng := RandomNumberGenerator.new()
-var random_speed: int
+var speed: int
+var x_direction: float
+var rotation_speed: float
 
 func _ready():
+	var rng := RandomNumberGenerator.new()
+	
+	# Start position
 	var width = get_viewport().get_visible_rect().size.x
-	var random_x = rng.randi_range(0, width)
-	var random_y = rng.randi_range(-150, -50)
-	position = Vector2(random_x, random_y)
-	var random_rot = rng.randi_range(0,360)
-	rotation = random_rot
-	random_speed = rng.randi_range(200,600)
-	var dir := DirAccess.open("res://Assets/Graphics/PNG/Meteors/")
-	dir.list_dir_begin()
-	var random_index = rng.randi_range(0,dir.get_files().size()-1)
-	var random_texture = load("res://Assets/Graphics/PNG/Meteors/"+dir.get_files()[random_index].replace(".import", ""))
-	$Sprite.texture = random_texture
+	var x_position = rng.randi_range(0, width)
+	var y_position = rng.randi_range(-150, -50)
+	position = Vector2(x_position, y_position)
+	
+	# Random texture
+	var path: String = "res://Assets/Graphics/PNG/Meteors/" + str(rng.randi_range(1,6)) + ".png"
+	$Sprite.texture = load(path)
+	
+	# Random speed/rotation/direction
+	speed = rng.randi_range(200,400)
+	x_direction = rng.randf_range(-1,1)
+	rotation_speed = rng.randf_range(10,100)
 
 func _process(delta: float) -> void:
-	position += Vector2(0,1) * random_speed * delta
+	# Velocity
+	position += Vector2(x_direction, 1) * speed * delta
+	
+	# Rotation
+	rotation_degrees += rotation_speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	print(body.name + " has collided")
+	print(body.name)

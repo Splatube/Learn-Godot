@@ -21,6 +21,10 @@ texture = ExtResource("1_k5f4k")
 region_enabled = true
 region_rect = Rect2(0, 0, 1250, 750)
 
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="StarTimer" type="Timer" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(640, 600)
 speed = 300
@@ -28,6 +32,7 @@ speed = 300
 [node name="Border" type="Node2D" parent="."]
 
 [node name="Borders" type="StaticBody2D" parent="Border"]
+collision_layer = 4
 
 [node name="RightBorder" type="CollisionShape2D" parent="Border/Borders"]
 position = Vector2(1330, 360)
@@ -45,11 +50,15 @@ shape = SubResource("RectangleShape2D_81xng")
 position = Vector2(640, 771)
 shape = SubResource("RectangleShape2D_81xng")
 
-[node name="MeteorTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
 [node name="Meteors" type="Node2D" parent="."]
 position = Vector2(-7, 17)
 
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="Lasers" type="Node2D" parent="."]
+
+[connection signal="timeout" from="StarTimer" to="." method="_on_star_timer_timeout"]
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
