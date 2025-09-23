@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfqncoco763x0"]
+[gd_scene load_steps=8 format=3 uid="uid://bfqncoco763x0"]
 
 [ext_resource type="Texture2D" uid="uid://b2g1p4jauulr1" path="res://Assets/Graphics/Backgrounds/darkPurple.png" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://c8yh5xeocs48d" path="res://Scenes/player.tscn" id="1_tumq0"]
 [ext_resource type="Script" uid="uid://c2lut0p0memv5" path="res://Assets/Scripts/level.gd" id="1_wqkje"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
-size = Vector2(99.45, 720)
+[ext_resource type="PackedScene" uid="uid://d2snqoh6204mt" path="res://Scenes/ui.tscn" id="4_81xng"]
+[ext_resource type="PackedScene" uid="uid://dkyh0r1c5lq1p" path="res://Scenes/game_over.tscn" id="5_wqkje"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
 size = Vector2(1478, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
+size = Vector2(99.45, 720)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wqkje")
@@ -20,35 +22,46 @@ scale = Vector2(1.1096, 1.0733334)
 texture = ExtResource("1_k5f4k")
 region_enabled = true
 region_rect = Rect2(0, 0, 1250, 750)
-
-[node name="Stars" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="StarTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(640, 600)
 speed = 300
 
 [node name="Border" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
-[node name="Borders" type="StaticBody2D" parent="Border"]
+[node name="Top" type="StaticBody2D" parent="Border"]
 collision_layer = 4
 
-[node name="RightBorder" type="CollisionShape2D" parent="Border/Borders"]
-position = Vector2(1330, 360)
-shape = SubResource("RectangleShape2D_6phgx")
-
-[node name="LeftBorder" type="CollisionShape2D" parent="Border/Borders"]
-position = Vector2(-50, 360)
-shape = SubResource("RectangleShape2D_6phgx")
-
-[node name="TopBorder" type="CollisionShape2D" parent="Border/Borders"]
+[node name="TopBorder" type="CollisionShape2D" parent="Border/Top"]
 position = Vector2(640, -50)
 shape = SubResource("RectangleShape2D_81xng")
 
-[node name="BottomBorder" type="CollisionShape2D" parent="Border/Borders"]
+[node name="Bottom" type="StaticBody2D" parent="Border"]
+collision_layer = 4
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Border/Bottom"]
 position = Vector2(640, 771)
 shape = SubResource("RectangleShape2D_81xng")
+
+[node name="Left" type="StaticBody2D" parent="Border"]
+collision_layer = 4
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Border/Left"]
+position = Vector2(-50, 360)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="Right" type="StaticBody2D" parent="Border"]
+collision_layer = 4
+
+[node name="RightBorder" type="CollisionShape2D" parent="Border/Right"]
+position = Vector2(1330, 360)
+shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="Meteors" type="Node2D" parent="."]
 position = Vector2(-7, 17)
@@ -58,6 +71,11 @@ wait_time = 0.75
 autostart = true
 
 [node name="Lasers" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("4_81xng")]
+
+[node name="GameOver" parent="." instance=ExtResource("5_wqkje")]
+visible = false
 
 [connection signal="timeout" from="StarTimer" to="." method="_on_star_timer_timeout"]
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]

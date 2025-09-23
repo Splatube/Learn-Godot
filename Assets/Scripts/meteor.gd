@@ -29,5 +29,9 @@ func _process(delta: float) -> void:
 	# Rotation
 	rotation_degrees += rotation_speed * delta
 
-func _on_body_entered(body: Node2D) -> void:
-	print(body.name)
+func _on_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.find_parent("Border") and body.name != "Top":
+		queue_free()
