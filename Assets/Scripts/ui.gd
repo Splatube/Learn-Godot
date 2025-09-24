@@ -12,6 +12,3 @@ func set_health(amount):
 		life.name = "Life"+str(i)
 		life.texture = image
 		$"Bottom Left/Lives".add_child(life)
-
-func get_score(score):
-	$Top/Score.text = "Score: " + str(score)	 

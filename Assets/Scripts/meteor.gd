@@ -23,6 +23,9 @@ func _ready():
 	speed = rng.randi_range(200,400)
 	x_direction = rng.randf_range(-1,1)
 	rotation_speed = rng.randf_range(10,100)
+	
+	var rand_scale = rng.randf_range(0.5,1.5)
+	scale = Vector2(rand_scale, rand_scale)
 
 func _process(delta: float) -> void:
 	# Velocity
