@@ -5,7 +5,7 @@
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Top" type="MarginContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -15,14 +15,14 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 20
 
-[node name="Score" type="Label" parent="MarginContainer"]
+[node name="Score" type="Label" parent="Top"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_qdvrb")
 theme_override_font_sizes/font_size = 32
 text = "HI"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="Bottom Left" type="MarginContainer" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -31,26 +31,26 @@ offset_right = 159.0
 grow_vertical = 0
 theme_override_constants/margin_left = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+[node name="Lives" type="HBoxContainer" parent="Bottom Left"]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+[node name="Life1" type="TextureRect" parent="Bottom Left/Lives"]
 layout_mode = 2
 texture = ExtResource("2_nf4gj")
 stretch_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+[node name="Life2" type="TextureRect" parent="Bottom Left/Lives"]
 layout_mode = 2
 texture = ExtResource("2_nf4gj")
 stretch_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+[node name="Life3" type="TextureRect" parent="Bottom Left/Lives"]
 layout_mode = 2
 texture = ExtResource("2_nf4gj")
 stretch_mode = 2
 
-[node name="TextureRect4" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+[node name="Life4" type="TextureRect" parent="Bottom Left/Lives"]
 layout_mode = 2
 texture = ExtResource("2_nf4gj")
 stretch_mode = 2
