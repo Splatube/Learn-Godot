@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2snqoh6204mt"]
 
+[ext_resource type="Script" uid="uid://c82o476oqpiyk" path="res://Assets/Scripts/ui.gd" id="1_nf4gj"]
 [ext_resource type="FontFile" uid="uid://bcnvnar0btdlk" path="res://Assets/Graphics/Fonts/VeniteAdoremus-rgRBA.ttf" id="1_qdvrb"]
-[ext_resource type="Texture2D" uid="uid://dc8aaeiwron3x" path="res://Assets/Graphics/PNG/UI/playerLife1_red.png" id="2_nf4gj"]
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" groups=["ui"]]
+script = ExtResource("1_nf4gj")
 
 [node name="Top" type="MarginContainer" parent="."]
 anchors_preset = 5
@@ -34,23 +35,3 @@ theme_override_constants/margin_left = 15
 [node name="Lives" type="HBoxContainer" parent="Bottom Left"]
 layout_mode = 2
 theme_override_constants/separation = 9
-
-[node name="Life1" type="TextureRect" parent="Bottom Left/Lives"]
-layout_mode = 2
-texture = ExtResource("2_nf4gj")
-stretch_mode = 2
-
-[node name="Life2" type="TextureRect" parent="Bottom Left/Lives"]
-layout_mode = 2
-texture = ExtResource("2_nf4gj")
-stretch_mode = 2
-
-[node name="Life3" type="TextureRect" parent="Bottom Left/Lives"]
-layout_mode = 2
-texture = ExtResource("2_nf4gj")
-stretch_mode = 2
-
-[node name="Life4" type="TextureRect" parent="Bottom Left/Lives"]
-layout_mode = 2
-texture = ExtResource("2_nf4gj")
-stretch_mode = 2

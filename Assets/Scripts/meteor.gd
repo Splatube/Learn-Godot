@@ -4,6 +4,8 @@ var speed: int
 var x_direction: float
 var rotation_speed: float
 
+signal collision
+
 func _ready():
 	var rng := RandomNumberGenerator.new()
 	
@@ -29,9 +31,5 @@ func _process(delta: float) -> void:
 	# Rotation
 	rotation_degrees += rotation_speed * delta
 
-func _on_body_entered(_body: Node2D) -> void:
-	pass
-
-func _on_body_exited(body: Node2D) -> void:
-	if body.find_parent("Border") and body.name != "Top":
-		queue_free()
+func _on_body_entered(body) -> void:
+	collision.emit(body)

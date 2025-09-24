@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkyh0r1c5lq1p"]
+[gd_scene load_steps=3 format=3 uid="uid://dkyh0r1c5lq1p"]
 
+[ext_resource type="Script" uid="uid://cwphamejrky6l" path="res://Assets/Scripts/game_over.gd" id="1_8fo1c"]
 [ext_resource type="FontFile" uid="uid://bcnvnar0btdlk" path="res://Assets/Graphics/Fonts/VeniteAdoremus-rgRBA.ttf" id="1_ojehl"]
 
-[node name="GameOver" type="CanvasLayer"]
+[node name="GameOver" type="CanvasLayer" groups=["ui"]]
+script = ExtResource("1_8fo1c")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15

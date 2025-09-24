@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfqncoco763x0"]
+[gd_scene load_steps=7 format=3 uid="uid://bfqncoco763x0"]
 
 [ext_resource type="Texture2D" uid="uid://b2g1p4jauulr1" path="res://Assets/Graphics/Backgrounds/darkPurple.png" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://c8yh5xeocs48d" path="res://Scenes/player.tscn" id="1_tumq0"]
 [ext_resource type="Script" uid="uid://c2lut0p0memv5" path="res://Assets/Scripts/level.gd" id="1_wqkje"]
 [ext_resource type="PackedScene" uid="uid://d2snqoh6204mt" path="res://Scenes/ui.tscn" id="4_81xng"]
-[ext_resource type="PackedScene" uid="uid://dkyh0r1c5lq1p" path="res://Scenes/game_over.tscn" id="5_wqkje"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
 size = Vector2(1478, 100)
@@ -15,7 +14,7 @@ size = Vector2(99.45, 720)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wqkje")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Bg" type="Sprite2D" parent="."]
 texture_repeat = 2
 position = Vector2(644.5, 354.5)
 scale = Vector2(1.1096, 1.0733334)
@@ -23,10 +22,6 @@ texture = ExtResource("1_k5f4k")
 region_enabled = true
 region_rect = Rect2(0, 0, 1250, 750)
 metadata/_edit_lock_ = true
-
-[node name="StarTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(640, 600)
@@ -63,20 +58,16 @@ collision_layer = 4
 position = Vector2(1330, 360)
 shape = SubResource("RectangleShape2D_6phgx")
 
-[node name="Meteors" type="Node2D" parent="."]
-position = Vector2(-7, 17)
-
 [node name="MeteorTimer" type="Timer" parent="."]
 wait_time = 0.75
 autostart = true
 
 [node name="Lasers" type="Node2D" parent="."]
 
+[node name="Meteors" type="Node2D" parent="."]
+position = Vector2(-7, 17)
+
 [node name="UI" parent="." instance=ExtResource("4_81xng")]
 
-[node name="GameOver" parent="." instance=ExtResource("5_wqkje")]
-visible = false
-
-[connection signal="timeout" from="StarTimer" to="." method="_on_star_timer_timeout"]
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]

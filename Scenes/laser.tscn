@@ -16,5 +16,5 @@ script = ExtResource("1_mou6w")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_r1bh0")
 
-[node name="Collisions" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mou6w")
